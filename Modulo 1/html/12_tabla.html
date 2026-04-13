@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width", initial-scale="1.0">    
+<meta charset="UTF-8">
+<title>Tablas</title>
+</head>
+<body>
+
+    <h1>Tabla</h1>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Ciudad</th>
+        </tr>
+        <tr>
+            <td>Ana García</td>
+            <td>29</td>
+            <td>Quito</td>
+        </tr>
+        <tr>
+            <td>uis Perez</td>
+            <td>20</td>
+            <td>Ambato</td>
+        </tr>
+        <tr>
+            <td>Andres García</td>
+            <td>22</td>
+            <td>Cuenca</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!--
+    table hace comienzo la tabla
+    -->
+
+    <!-- 
+    tr seria como la 
+    -->
+
+    <!--
+    td
+    -->
+    
+    <!--
+    th
+    -->
+
+    <!--
+    thead
+    -->
+
+    <!--
+
+    -->
+
+    <!--
+    scope seria mas indicativo que sepa que es columna o fila
+    -->
+
+    <h1>Tabla por Secciones</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Producto
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Stock
+                </th>
+                <th>
+                    Categoría
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Monitor 4k
+                </td>
+                <td>
+                    450$
+                </td>
+                <td>
+                    12
+                </td>
+                <td>
+                    Electronica
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Teclado Mecanico
+                </td>
+                 <td>
+                    78$
+                </td>
+                <td>
+                    5
+                </td>
+                <td>
+                    Perifericos
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Mouse
+                </td>
+                 <td>
+                    50$
+                </td>
+                <td>
+                    12
+                </td>
+                <td>
+                    Perifericos
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td>15000</td>
+                <td>12</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <hr>
+
+    <h1> Tabla Scope - Clasificaciones</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Materia</th>
+                <th scope="col">1er Corte</th>
+                <th scope="col">2da Corte</th>
+                <th scope="col">Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">
+                    Programacion I
+                </td>
+                <td>8</td>
+                <td>7</td>
+                <td>8</td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td scope="row">
+                    Base de Datos II
+                </td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td scope="row">
+                    Calidad del software
+                </td>
+                <td>9</td>
+                <td>8</td>
+                <td>8</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h1>Combinación de Celdas-Calificaciones</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Equipo</th>
+                <th colspan="3">Resultado</th>
+                <th rowspan="2">Puntos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">
+                    Programacion I
+                </td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+            </tr>
+             <tr>
+                <td scope="row">
+                    Base de Datos II
+                </td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+            </tr>
+             <tr>
+                <td scope="row">
+                    Calidad de Software
+                </td>
+                <td>8</td>
+                <td>7</td>
+                <td>7</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <hr>
+
+    <h1>Combinación de Celdas-Calificaciones</h1>
+
+    <table border="2">
+        <thead>
+            <tr>
+                <th rowspan="2">Equipo</th>
+                <th colspan="3">Resultado</th>
+                <th rowspan="2">Puntos</th>
+            </tr>
+            <tr>
+                <th>V</th>
+                <th>E</th>
+                <th>D</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">
+                    Real Madrid
+                </td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>71</td>
+            </tr>
+             <tr>
+                <td scope="row">
+                    Barcelona
+                </td>
+                <td>8</td>
+                <td>8</td>
+                <td>8</td>
+                <td>80</td>
+            </tr>
+             <tr>
+                <td scope="row">
+                    Calidad de Software
+                </td>
+                <td>8</td>
+                <td>7</td>
+                <td>7</td>
+                <td>90</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h1>Titulo y Resumen-Calificaciones</h1>
+
+    <table border="2">
+        <thead>
+            <tr>
+                <th >Alumno</th>
+                <th >Matematicas</th>
+                <th>Lenguaje</th>
+                <th>Ciencias</th>
+                <th>Promedio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Luis</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>7.8</td>
+            </tr>
+             <tr>
+                <td>Anahi</td>
+                <td>8.2</td>
+                <td>9.1</td>
+                <td>7.3</td>
+                <td>7.7</td>
+            </tr>
+             <tr>
+                <td>Valery</td>
+                <td>8</td>
+                <td>9.3</td>
+                <td>7</td>
+                <td>7.1</td>
+            </tr>
+            <tr>
+                <td>Sofia</td>
+                <td>8.2</td>
+                <td>9.4</td>
+                <td>7</td>
+                <td>7.4</td>
+            </tr>
+            <tr>
+                <td>Andres</td>
+                <td>8</td>
+                <td>9</td>
+                <td>7</td>
+                <td>7.8</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    Media Clase
+                </th>
+                <td>8</td>
+                <td>9.1</td>
+                <td>9.7</td>
+                <td>7.8</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <hr>
+    
+    <table border="2">
+        <thead>
+            <tr>
+                <col style="background-color: antiquewhite">
+                <col style="background-color: aquamarine">
+                <col style="background-color: red">
+                <col style="background-color: bisque">
+            
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jhonny la cruz</td>
+                <td>Martes</td>
+                <td>Miercoles</td>
+                <td>Jueves</td>
+            </tr>
+            <tr>
+                <td>
+                    Programación I
+                </td>
+                <td>7:00 am</td>
+                <td>8:00 am</td>
+                <td>9:00 am</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>
