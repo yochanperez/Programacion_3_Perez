@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width", initial-scale="1.0">    
+<meta charset="UTF-8">
+<title>Formularios con separadores</title>
+</head>
+<body>
+
+    <h1>Formulario con Separadores</h1>
+    <form action="/procesar" method="post">
+        <fieldset>
+            <legend>
+                Datos Personales
+            </legend>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre">
+            <br>
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido">
+        </fieldset>
+        <fieldset>
+            <legend>Datos de acceso</legend>
+            <label for="email">Correo electronico</label>
+            <input type="email" name="email" id="email">
+            <br>
+            <label for="paswword">Contraseña</label>
+            <input type="password" name="password" id="password">
+        </fieldset>
+        <button type="submit">Crear cuenta</button>
+    </form>
+</body>

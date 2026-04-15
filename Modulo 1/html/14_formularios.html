@@ -61,11 +61,152 @@
                </td>
             </tr>
 
-           
+            <!--
+            Tipo fecha
+            -->
 
+            <tr>
+                <td>
+                    <label for="fecha">Fecha de Nacimiento</label><br>
+                    <input type="date" id="fecha" name="fecha">
+                </td>
+
+                <td>
+                <label for="hora">Hora de la cita</label>
+                <input type="time" id="hora" name="hora">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="evento">Inicio del Evento</label><br>
+                    <input type="datetime-local" id="evento" name="evento">
+                </td>
+                <td>
+                <label for="mes">Mes de Inicio</label>
+                <input type="month" id="mes" name="mes">
+                </td>
+            </tr>
+
+            <!--checkbox y options-->
+
+            <tr>
+                <td colspan="2">
+                    <h3>Checkbox y Option</h3>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" id="acepto" name="acepto" value="si">
+                    <label for="acepto">Acepto los tèrminos y condiciones</label>
+                </td>
+                <td>
+                    <fieldset>
+                        <legend>
+                            Metodo de pago
+                        </legend>
+                        <input type="radio" id="tarjeta" name="pago" value="tarjeta">
+                        <label for="tarjeta">Tarjeta de Credito</label>
+                        <input type="radio" id="paypal" name="pago" value="paypal">
+                        <label for="paypal">Paypal</label>
+                        <input type="radio" id="transferencia" name="pago" value="transferencia">
+                        <label for="transferencia">transferencia Bancaria</label>
+                    </fieldset>
+                </td>
+            </tr>
+
+            <!--Utiles-->
+
+             <tr>
+                <td colspan="2">
+                    <h3>Utiles</h3>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="color">Color</label>
+                    <input type="color" id="color" name="color" value="#3b82f6">
+                </td>
+                <td>
+                    <label for="color">Foto de perfil:</label><br>
+                    <input type="file" id="foto" name="foto" value="#3b82f6">
+                </td>
+                <td>
+                    <label for="docs">Documentos</label>
+                    <input type="file" id="docs" name="documentos" accept="pdf,.doc,.docx">
+                </td>
+
+                <td>
+                    <label for="color">Foto de perfil: </label><br>
+                    <input type="file" id="foto" value="image/">
+                    <input type="hidden" id="token" name="token" value="abcd123xyz">
+                </td>
+            </tr>
+
+            <!--Text Area y Select-->
+
+             <tr>
+                <td colspan="2">
+                    <h3>Text Area y Select</h3>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="mensaje">Mensaje</label>
+                    <input id="mensaje" name="mensaje" rows="6" cols="50" placeholder="Escribe tu mensaje aqui">
+                </td>
+                <td>
+                    <!--
+                    Select basico-->
+                    <label for="ciudad">Ciudades:</label><br>
+                    <select id="ciudad" name="ciudad">
+                        <optgroup label="España">
+                            <option value="ma">Madrid</option>
+                            <option value="bcn">Barcelona</option>
+                            <option value="sev">Sevilla</option>
+                        </optgroup>
+                        <optgroup label="Ecuador">
+                            <option value="qui">Quito</option>
+                            <option value="guy">Guayaquil</option>
+                            <option value="tul">Tulcan</option>
+                        </optgroup>
+                        <optgroup label="Venezeuela">
+                            <option value="bol">Bolivar</option>
+                            <option value="car">Caracas</option>
+                            <option value="vale">Valencia</option>
+                        </optgroup>
+                    </select>
+                </td>
+                <td>
+                    <!--Selección multiple-->
+                    <label for="skill">Habilidades</label>
+                    <select id="skill" name="habilidades[]" multiple size="4">
+                        <option value="html$">HTML5</option>
+                        <option value="css3">CSS3</option>
+                        <option value="js">Javascript</option>
+                        <option value="ts">Typescript</option>
+                    </select>
+                </td>
+                <td>
+                    <!--
+                    Select basico-->
+                    <label for="pais">País:</label><br>
+                    <select id="pais" name="pais">
+                        <option value="">--Seleccion un País--</option>
+                        <option value="co">Colombia</option>
+                        <option value="ec">Ecuador</option>
+                        <option value="es">España</option>
+                        <option value="ve">Venezuela</option>
+                    </select>
+                </td>
             
-
         </table>
+
+        <button type="reset">Limpiar</button>
+        <button type="button">Aceptar</button>
     </form>
 </body>
 </html>
