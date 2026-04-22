@@ -92,3 +92,13 @@ button {
 
   background-color: color-mix(in srgb, #1a1a2e 70%, transparent);
 }
+
+.hero-banner {
+  height: 100vh;  /* 100% de la altura de la ventana */
+  width: 100vw;   /* 100% del ancho de la ventana */
+}
+
+/* Sección mínima: al menos la mitad de la pantalla */
+.seccion-destacados {
+  min-height: 50vh;
+}
