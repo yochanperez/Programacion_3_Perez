@@ -1,0 +1,11 @@
+.parrafo {
+  line-height: 1.6; /* 1.6 × font-size actual */
+}
+
+.titulo-producto {
+  line-height: 1.2; /* títulos más compactos */
+}
+
+.descripcion-larga {
+  line-height: 1.8; /* textos largos más cómodos de leer */
+}
