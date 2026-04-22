@@ -11,6 +11,7 @@
         }
     </style>
     <link rel="stylesheet" href="04_display.css">
+    <link rel="stylesheet" href="04_reset.css">
 </head>
 <body>
     <h1 style="color: #e63946">Display</h1>
@@ -20,18 +21,18 @@
 
     <button class="btn-carrito">Ir al carrito</button><br>
 
-    <button>Menu</button>
-    <div id=menu class="menu-movil">
+    <button onclick="toggleMenu()">Menu</button>
+    <div id="menu" class="menu-movil">
         <ul>
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Servicio</a></li>
             <li><a href="#">Contacto</a></li>
         </ul>
-    </div><br>
+    </div>
     <script>
         function toggleMenu(){
-            const menu = documentgetElementById('menu')
-            menu.classList.toggleMenu('activo')
+            const menu = document.getElementById('menu')
+            menu.classList.toggle('activo')
         }
     </script>
     <div class="menu-movil.activo">Nuevo Producto</div>
