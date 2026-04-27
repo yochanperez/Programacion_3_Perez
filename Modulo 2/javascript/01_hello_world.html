@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi página</title>
+</head>
+<body>
+  <h1 id="titulo">Hola</h1>
+  <br>
+  <h1 id="titulo2">Cargando...</h1>
+
+  <!-- Mejor ubicar el script al final del body para no bloquear el renderizado -->
+  <script>
+    const titulo = document.getElementById("titulo");
+    titulo.textContent = "¡Hola, JavaScript!";
+    console.log("Script interno ejecutado");
+    console.log("Hello from console");
+  </script>
+  <script src="01_hello_world.js" defer></script>
+</body>
+</html>
