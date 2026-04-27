@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Validación - Ficha del Jugador</title>
+</head>
+<body>
+
+    <h1>Registro Técnico de Jugador</h1>
+    <form action="/procesar-jugador" method="post">
+        
+        <fieldset>
+            <legend>Campo Obligatorio</legend>
+            <label for="apodo">Apodo del Jugador</label>
+            <input type="text" id="apodo" name="apodo" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Minlength / Maxlength</legend>
+            <label for="club">Nombre del Club (Abreviado)</label>
+            <input type="text" id="club" name="club" minlength="3" maxlength="10">
+        </fieldset>
+
+        <fieldset>
+            <legend>Patrón de caracteres - Expresión regular</legend>
+            <label for="id_ficha">Código de Ficha (5 números)</label><br>
+            <input type="text" name="id_ficha" id="id_ficha" pattern="[0-9]{5}" placeholder="Ej: 12345">
+        </fieldset>
+
+        <fieldset>
+            <legend>Min / Max rango para números</legend>
+            <label for="dorsal">Número de Camiseta (Dorsal)</label><br>
+            <input type="number" name="dorsal" id="dorsal" min="1" max="99">
+        </fieldset>
+
+        <fieldset>
+            <legend>Deshabilitado</legend>
+            <label for="estado">Estado de Transferencia</label><br>
+            <input type="text" name="estado" id="estado" value="Cerrado" disabled>
+        </fieldset>
+
+        <fieldset>
+            <legend>Solo lectura</legend>
+            <label for="liga">Liga Actual</label><br>
+            <input type="text" name="liga" id="liga" value="Liga Pro" readonly>
+        </fieldset>
+
+        <br>
+        <button type="submit">Registrar Jugador</button>
+    </form>
+</body>
+</html>
