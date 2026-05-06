@@ -74,3 +74,36 @@ if (totalAcumulado < META_VENTAS) {
 // Día 5: +$95  → Acumulado: $810
 // Día 6: +$250 → Acumulado: $1060
 // 🎯 ¡Meta alcanzada en 6 día(s)!
+
+// Ejemplo — sistema de reintentos de conexión
+const MAX_REINTENTOS   = 3;
+const TIMEOUT_SEGUNDOS = 2;
+let reintentos         = 0;
+let conexionExitosa    = false;
+
+do {
+  reintentos++;
+  console.log(`Intento ${reintentos}/${MAX_REINTENTOS}: conectando al servidor...`);
+
+  // Simulación: la conexión falla en los primeros 2 intentos
+  if (reintentos >= 3) {
+    conexionExitosa = true;
+  }
+
+  if (!conexionExitosa && reintentos < MAX_REINTENTOS) {
+    console.log(`  ⏳ Fallo. Reintentando en ${TIMEOUT_SEGUNDOS}s...`);
+  }
+
+} while (!conexionExitosa && reintentos < MAX_REINTENTOS);
+
+if (conexionExitosa) {
+  console.log("✅ Conexión establecida correctamente.");
+} else {
+  console.log("❌ No se pudo conectar. Verifique el servidor.");
+}
+// Intento 1/3: conectando al servidor...
+//   ⏳ Fallo. Reintentando en 2s...
+// Intento 2/3: conectando al servidor...
+//   ⏳ Fallo. Reintentando en 2s...
+// Intento 3/3: conectando al servidor...
+// ✅ Conexión establecida correctamente.

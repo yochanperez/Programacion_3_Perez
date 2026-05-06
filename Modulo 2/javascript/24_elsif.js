@@ -93,3 +93,4 @@ if(sueldo < 500){
 }else{
     console.log("Sueldo alto");
 }
+
