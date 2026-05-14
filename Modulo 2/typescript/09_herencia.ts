@@ -2,12 +2,10 @@
 
 // Clase padre
 class Animal {
-  // LAS PROPIEDADES ESTÁN DENTRO DE LA CLASE, PERO AFUERA DEL CONSTRUCTOR
   protected nombre: string;
   protected edad: number;
 
   constructor(nombre: string, edad: number) {
-    // Aquí solo les das el valor que llega por parámetros
     this.nombre = nombre;
     this.edad = edad;
   }
