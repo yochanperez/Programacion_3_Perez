@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ProductDto } from './product.dto';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 @Controller()
 export class AppController {
@@ -12,6 +13,7 @@ export class AppController {
   }
 
   @Post("/products")
+  @UseGuards(JwtAuthGuard)
   CreteProduct(@Body() product: ProductDto): ProductDto {
     return this.appService.CreteProducto(product);
   }
@@ -27,6 +29,7 @@ export class AppController {
   }
 
   @Put('/products/:id')
+  @UseGuards(JwtAuthGuard)
   update(@Param('id') id: string,
     @Body() updatedProduct: ProductDto):  any{
     return this.appService.update(id,
@@ -35,6 +38,7 @@ export class AppController {
   }
 
   @Delete('/products/:id')
+  @UseGuards(JwtAuthGuard)
     DeleteById(@Param('id') id: string): ProductDto{
     return this.appService.deleteById(id);
   }
