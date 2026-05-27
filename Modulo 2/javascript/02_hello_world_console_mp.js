@@ -1,0 +1,11 @@
+console.log("--------------------------------------------------");
+console.log("⚽ FUTDATA ANALYTICS - ENGINE NODE.JS CORE");
+console.log("--------------------------------------------------");
+console.log("Iniciando servicio de telemetría de campo...");
+console.log("Conectando con el flujo de datos en vivo... [OK]");
+console.log("Sincronizando registros tácticos de la fecha... [OK]");
+console.log("--------------------------------------------------");
+console.log("PROCESANDO PARTIDO: F.C. Local vs Visitante C.F.");
+console.log("Estado de la transmisión: Minuto 0' - Balón en juego");
+console.log("--------------------------------------------------");
+console.log("Métricas base inicializadas correctamente en la consola.");
