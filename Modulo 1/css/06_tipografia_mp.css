@@ -1,0 +1,49 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.precio-producto {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.titulos {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #ffffff;
+}
+
+.internacional {
+  font-family: 'Inter', sans-serif;
+  color: cadetblue;
+}
+
+.titulo-seccion { 
+  font-weight: 700; 
+  color: #f1f5f9;
+  margin-top: 1rem;
+}
+
+.precio-producto { 
+  font-weight: 600; 
+  color: #10b981;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.descripcion { 
+  font-weight: 400; 
+  color: #9ca3af;
+}
+
+.nota-legal { 
+  font-weight: 300; 
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+.precio-original {
+  font-style: italic;
+  text-decoration: line-through;
+  color: #6b7280;
+}
