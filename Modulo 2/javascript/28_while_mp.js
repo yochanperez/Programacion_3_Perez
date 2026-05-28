@@ -94,7 +94,7 @@ do {
   intentosRealizados++;
   console.log(`Intento ${intentosRealizados}/${TOPE_REINTENTOS_ENLACE}: Sincronizando bandas de frecuencia...`);
 
-  // Simulación: El chaleco con el sensor biométrico del futbolista se enlaza con la antena en el tercer intento
+  // Simulación El chaleco con el sensor biométrico del futbolista se enlaza con la antena en el tercer intento
   if (intentosRealizados >= 3) {
     enlaceEstablecido = true;
   }
