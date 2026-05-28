@@ -68,7 +68,8 @@ const monitoreoPlantilla: EvaluadorRendimiento[] = [
 
 // Un único bucle ejecuta e itera distintas lógicas internas sin importar el puesto
 for (const evaluador of monitoreoPlantilla) {
-  console.log(evaluador.emitirInformeConsolidated());
+  // LÍNEA CORREGIDA: Se cambió 'emitirInformeConsolidado' por 'emitirInformeConsolidado'
+  console.log(evaluador.emitirInformeConsolidado());
 }
 
 // Cálculo del puntaje consolidado global del equipo mediante reducción polimórfica
