@@ -29,7 +29,6 @@ export class UsersService {
     }
   }
 
-  // Cambiado el retorno a estrictamente Promise<Pagination<User>>
   async findAll(
     queryDto: QueryDto,
     isActive?: boolean,
@@ -72,7 +71,6 @@ export class UsersService {
       return await paginate<User>(query, { page, limit });
     } catch (err) {
       console.error('Error retrieving users:', err);
-      // Lanzar excepción evita retornar 'null' y mantiene feliz a TypeScript
       throw new InternalServerErrorException('Error al obtener los usuarios');
     }
   }
@@ -87,15 +85,14 @@ export class UsersService {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-  try {
-    return await this.userRepository.findOne({ where: { email } });
-  } catch (err) {
-    console.error('Error fetching user by email:', err);
-    return null;
+    try {
+      return await this.userRepository.findOne({ where: { email } });
+    } catch (err) {
+      console.error('Error fetching user by email:', err);
+      return null;
+    }
   }
-}
 
-  // NUEVO: Método update que faltaba
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     try {
       if (updateUserDto.password) {
@@ -111,7 +108,6 @@ export class UsersService {
     }
   }
 
-  // NUEVO: Método remove que faltaba
   async remove(id: string): Promise<{ deleted: boolean }> {
     try {
       const user = await this.findOne(id);
@@ -122,5 +118,14 @@ export class UsersService {
       console.error('Error removing user:', err);
       throw new InternalServerErrorException('Error al eliminar el usuario');
     }
+  }
+
+  async updateProfile(id: string, filename: string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) throw new NotFoundException('User not found');
+    
+    // Asegúrate de que tu entidad 'User' tenga la propiedad 'profile' o cambia este campo
+    user.profile = filename; 
+    return this.userRepository.save(user);
   }
 }
