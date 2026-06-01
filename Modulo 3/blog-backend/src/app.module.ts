@@ -8,12 +8,9 @@ import { AppService } from './app.service';
 // Importaciones de tus módulos personalizados
 import { UsersModule } from './users/users.module';
 import { CategoriesModule } from './categories/categories.module';
-import { CustomersModule } from './customers/customers.module';
-import { InvoicesModule } from './invoices/invoices.module';
 import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
 import { MailModule } from './mail/mail.module';
-import { ProductsModule } from './products/products.module';
 import { CursosModule } from './cursos/cursos.module';
 
 @Module({
@@ -38,12 +35,9 @@ import { CursosModule } from './cursos/cursos.module';
     
     UsersModule,
     CategoriesModule,
-    CustomersModule,
-    InvoicesModule,
     PostsModule,
     AuthModule,
     MailModule,
-    ProductsModule,
     CursosModule,
   ],
   controllers: [AppController],
