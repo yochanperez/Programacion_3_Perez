@@ -15,3 +15,10 @@ document.getElementById("btn3").addEventListener("click", function() {
     nuevoProducto2.textContent = "Producto desde Listener";
     lista2.appendChild(nuevoProducto2);
 });
+
+function reemplazarParrafo() {
+    const parrafo = document.getElementById("parrafo");
+    const nuevoparrafo = document.createElement("p");
+    nuevoparrafo.textContent = "Quiero mi 10 profe";
+    parrafo.replaceWith(nuevoparrafo);
+}
