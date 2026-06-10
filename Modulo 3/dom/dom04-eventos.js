@@ -22,3 +22,15 @@ function reemplazarParrafo() {
     nuevoparrafo.textContent = "Quiero mi 10 profe";
     parrafo.replaceWith(nuevoparrafo);
 }
+
+document.getElementById('campo').addEventListener('input', () => {
+    console.log(
+        'Valor del campo:',
+        document.getElementById('campo').value
+    );
+});
+
+document.getElementById('campo_actualizar_parrafo').addEventListener('input', () => {
+    const valorCampo = document.getElementById('campo_actualizar_parrafo').value;
+    document.getElementById('parrafo2').textContent = `valor_actualizado: ${valorCampo}`;
+});

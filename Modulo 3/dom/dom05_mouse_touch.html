@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización del DOM</title>
+    <script src="dom05_mouse_touch.js" defer></script>
+</head>
+<body>
+    <h1 id="titulo">Eventos del DOM</h1>
+    <h2>Evento Mouse touch</h2>
+
+    <div id="caja" style="width: 200px;
+    background-color: lightcyan;
+    height: 200px; border: 1px solid black;">
+    </div>
+    <div id="areaTouch" style="width: 200px;
+    background-color: red;
+    height: 200px; border: 1px solid black;"></div>
+
+    <div id="container" style="position:relative; width:100%; height:400px; background:whitesmoke; margin-top:20px;">
+       <div id="circulo" style="width:80px; height:80px; background:red; border-radius:50%; position:absolute; top:100px; left:100px;"></div>
+   </div>
+   <!-- Cuarto ejemplo -->
+   <div style="margin-top:20px;">
+       <button id="botonAnimado" style="padding:10px 20px; font-size:18px; transition: all 0.3s;">¡Tócame o pasa el mouse!</button>
+   </div>
+
+
+
+
+<!-- Quinto ejemplo -->
+<div id="contenedorTriangulo" style="position:relative; width:100%; height:300px; margin-top:20px; background:whitesmoke;">
+   <div id="triangulo" style="
+       width: 0;
+       height: 0;
+       border-left: 50px solid transparent;
+       border-right: 50px solid transparent;
+       border-bottom: 100px solid crimson;
+       position: absolute;
+       top: 100px;
+       left: calc(50% - 50px);
+       transition: transform 0.2s ease;">
+   </div>
+</div>
+
+    
+</body>
+</html> 
