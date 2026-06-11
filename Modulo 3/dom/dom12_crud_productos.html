@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>dom12-crud-productos</title>
+    <script src="dom12_crud_productos.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .formulario{
+            background-color: #eef4fb;
+            border: 1px solid #b0fce8;
+            padding:20px;
+            margin-top:20px
+        }
+        .formulario input{
+            margin:5px;
+            padding:8px;
+            width:200px;
+        }
+        .formulario input{
+            width: 100px;
+            padding:5px;
+            margin-bottom: 8px;
+        }
+        .btn-agregar:hover{
+            background-color: #4CAF50;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="titulo">Eventos del DOM</h1>
+    <h2>CRUD de Productos</h2>
+    <div class="formulario">
+        <h3>Agregar Nuevo Producto</h3>
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" type="text" placeholder="Nombre del producto">
+        <label for="descripcion">Descripcion:</label>
+        <input id="descripcion" type="text" placeholder="Descripcion">
+        <label for="precio">Precio:</label>
+        <input id="precio" type="number" placeholder="precio">
+        <button id="btn_agregar" class="btn_agregar">Agregrar producto</button>
+        <button id="btn_cancelar" class="btn_cancelar">Cancelar</button>
+    </div>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla">
+            </tbody>
+    </table>
+
+</body>
+</html>
