@@ -41,6 +41,31 @@ function renderProductos() {
 
         cuerpoTabla.appendChild(fila);
     });
+    actualizarEstadisticas();
+}
+
+function actualizarEstadisticas() {
+    const total = productos.length;
+    
+    if (total === 0) {
+        document.getElementById('stat_total').textContent = '0';
+        document.getElementById('stat_promedio').textContent = '$0.00';
+        document.getElementById('stat_caro').textContent = '-';
+        document.getElementById('stat_barato').textContent = '-';
+        return;
+    }
+
+    const sumaPrecios = productos.reduce((acc, p) => acc + p.precio, 0);
+    const promedio = sumaPrecios / total;
+
+    const productoMasCaro = productos.reduce((max, p) => p.precio > max.precio ? p : max, productos[0]);
+
+    const productoMasBarato = productos.reduce((min, p) => p.precio < min.precio ? p : min, productos[0]);
+
+    document.getElementById('stat_total').textContent = total;
+    document.getElementById('stat_promedio').textContent = `$${promedio.toFixed(2)}`;
+    document.getElementById('stat_caro').textContent = `${productoMasCaro.nombre} ($${productoMasCaro.precio.toFixed(2)})`;
+    document.getElementById('stat_barato').textContent = `${productoMasBarato.nombre} ($${productoMasBarato.precio.toFixed(2)})`;
 }
 
 function guardarProducto() {
