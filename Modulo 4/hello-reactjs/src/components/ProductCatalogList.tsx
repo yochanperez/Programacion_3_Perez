@@ -1,10 +1,9 @@
-// src/components/ProductCatalogList.tsx
-
 interface Product {
   id: number
   name: string
   price: number
   outOfStock?: boolean
+  category: string
 }
 
 interface ProductCatalogListProps {
@@ -12,10 +11,7 @@ interface ProductCatalogListProps {
   title?: string
 }
 
-export default function ProductCatalogList({
-  products,
-  title = 'Catálogo',
-}: ProductCatalogListProps) {
+export default function ProductCatalogList({ products, title = 'Catálogo' }: ProductCatalogListProps) {
   return (
     <section>
       <h2 style={{ marginBottom: 16 }}>{title}</h2>
@@ -43,6 +39,9 @@ export default function ProductCatalogList({
                   Agotado
                 </em>
               )}
+              <em style={{ marginLeft: 8, color: '#666', fontSize: 14 }}>
+                ({product.category})
+              </em>
             </span>
             <strong>${product.price.toFixed(2)}</strong>
           </li>

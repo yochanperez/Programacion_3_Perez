@@ -1,17 +1,15 @@
-// src/components/ProductCard.tsx
-
 interface ProductCardProps {
   title: string
   description?: string
   highlighted?: boolean
-  price?: 0
+  price?: number
 }
 
 export default function ProductCard({
   title,
   description = 'Sin descripción',
   highlighted = false,
-  price=0
+  price
 }: ProductCardProps) {
   return (
     <div
@@ -25,7 +23,8 @@ export default function ProductCard({
     >
       <h3 style={{ margin: '0 0 8px' }}>{title}</h3>
       <p style={{ margin: 0, color: '#555' }}>{description}</p>
-      <p>Precio: {price}</p>
+      {/* Solo mostramos el precio si nos pasan el prop */}
+      {price !== undefined && <p style={{ marginTop: 8, fontWeight: 'bold' }}>Precio: ${price}</p>}
     </div>
   )
 }

@@ -1,37 +1,31 @@
-import ProductCard from './components/ProductCard'
-import ProductCatalogList from './components/ProductCatalogList'
+// Asegúrate de que la ruta y el nombre del archivo sean correctos
+import AnimalCatalogList from './components/MascotasList'
 
-interface Product {
+// Definimos la interfaz aquí o la importamos si está en otro lado
+export interface Animal {
   id: number
   name: string
   price: number
-  outOfStock?: boolean
+  edad: number
 }
 
-const catalog: Product[] = [
-  { id: 1, name: 'Teclado mecánico',  price: 89.99 },
-  { id: 2, name: 'Monitor 27"',       price: 349.99 },
-  { id: 3, name: 'Mouse inalámbrico', price: 29.99, outOfStock: true },
-  { id: 4, name: 'Webcam HD',         price: 59.99 },
+const animales: Animal[] = [
+  { id: 1, name: 'Perrito Golden', price: 150.00, edad: 2 },
+  { id: 2, name: 'Gatito Siames',  price: 80.00,  edad: 1 },
+  { id: 3, name: 'Loro Hablador',  price: 200.00, edad: 5 },
 ]
 
 export default function App() {
   return (
     <main style={{ maxWidth: 540, margin: '40px auto', fontFamily: 'sans-serif' }}>
-
-      <ProductCard
-        title="Bienvenido a la tienda"
-        description="Encuentra los mejores accesorios para tu escritorio"
-        highlighted
-        price={1000}
+      
+      <h1>Refugio de Animales</h1>
+      
+      {/* Usamos exactamente el mismo nombre que pusimos en el import */}
+      <AnimalCatalogList 
+        animals={animales} 
+        title="Mascotas en adopción" 
       />
-
-      <ProductCard title="Oferta del día" description="Webcam HD con 20% de descuento" />
-
-      <ProductCard title="Novedades de la semana" />
-
-
-      <ProductCatalogList products={catalog} title="Productos disponibles" />
 
     </main>
   )
