@@ -11,6 +11,8 @@ import StatusBadge         from './components/StatusBadge'
 import MiniProfileCard     from './components/MiniProfileCard'
 import SimpleInfoTable     from './components/SimpleInfoTable'
 import VehiculosTable      from './components/ProductCard'
+import DigitalCounter from './components/DigitalCounter'
+import UserProfileForm from './components/UserProfileForm'
 
 // ┌──────────────────────────────────────────────────────────────────────────┐
 // │  Cambia PASO y guarda (Ctrl+S) para navegar entre componentes.          │
@@ -28,7 +30,7 @@ import VehiculosTable      from './components/ProductCard'
 // │  12  ProductCatalogList  — lista con renderizado condicional de items   │
 // │  13  UserProfileCard     — ejercicio: props complejas + rol             │
 // └──────────────────────────────────────────────────────────────────────────┘
-const PASO = 11
+const PASO = 13
 
 const fruits = [
   { name: 'Manzana', emoji: '🍎', calories: 52, inSeason: true },
@@ -105,7 +107,14 @@ export default function App() {
         ]} 
       />
     ) :
-    <p style={{ color: '#e00' }}>Paso {PASO}: crea el componente primero</p>
+    PASO === 12 ? (
+  <DigitalCounter label='Contador' step={1} />
+  ) :
+    PASO === 13 ? (
+      <UserProfileForm />
+    ) : (
+      <p style={{ color: '#e00' }}>Paso {PASO}: crea el componente primero</p>
+    )
 
   return (
     <main style={{ maxWidth: 540, margin: '40px auto', fontFamily: 'sans-serif', padding: '0 16px' }}>
