@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Repaso CRUD Tareas</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <h1>CRUD de Tareas (Básico)</h1>
+
+    <div>
+        <h3>Formulario</h3>
+        <label for="titulo">Título:</label><br>
+        <input id="titulo" type="text" placeholder="Título de la tarea"><br><br>
+
+        <label for="descripcion">Descripción:</label><br>
+        <input id="descripcion" type="text" placeholder="Descripción"><br><br>
+
+        <label for="prioridad">Prioridad:</label><br>
+        <select id="prioridad">
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+        </select><br><br>
+        
+        <button id="btn_guardar">Guardar Tarea</button>
+        <button id="btn_cancelar">Cancelar</button>
+    </div>
+
+    <hr>
+
+    <div>
+        <h3>Estadísticas</h3>
+        <p>Total tareas: <span id="stat_total">0</span></p>
+        <p>Tareas ALTA prioridad: <span id="stat_alta">0</span></p>
+    </div>
+
+    <hr>
+
+    <h3>Lista de Tareas</h3>
+    <ul id="listaTareas"></ul>
+
+</body>
+</html>

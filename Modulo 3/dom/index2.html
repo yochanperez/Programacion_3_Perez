@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CRUD</title>
+        <script src="script2.js" defer></script>
+    </head>
+
+    <h1>CRUD BASICO</h1>
+<body>
+
+    <div>
+        <h3>Formulario</h3>
+        <label for="titulo">Titulo:</label><br>
+        <input id="titulo" type="text" placeholder="Titulo de la tarea">
+
+        <label for="descripcion">Descripcion:</label><br>
+        <input id="descripcion" type="text" placeholder="Descripcion de la tarea">
+
+        <label for="prioridad">Prioridad:</label><br>
+        <select id="prioridad">
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+        </select>
+        <br><br>
+
+        <button id="btn_guardar">Guardar Tarea</button>
+        <button id="btn_cancelar">Cancelar</button>
+    </div>
+
+
+        
+
+        <br>
+
+    <div>
+        <h3>Totales</h3>
+        <p>Total tareas: <span id="stat_total">0</span></p>
+        <p>Total tareas: <span id="stat_alta">0</span></p>
+    </div>
+
+    <hr>
+
+    <h3>Listas de Tareas</h3>
+    <ul id="listaTareas"></ul>
+
+
+</body>
+</html>
