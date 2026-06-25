@@ -5,8 +5,8 @@ import DigitalCounter      from './components/DigitalCounter'
 import SafeCounter         from './components/SafeCounter'
 import UserProfileForm     from './components/UserProfileForm'
 import TaskManager         from './components/TaskManager'
-// import CatalogProductItem  from './components/CatalogProductItem'
-// import ShoppingCartSummary from './components/ShoppingCartSummary'
+import CatalogProductItem  from './components/CatalogProductItem'
+import ShoppingCartSummary from './components/ShoppingCartSummary'
 
 // ┌──────────────────────────────────────────────────────────────────────┐
 // │  Cambia PASO y guarda (Ctrl+S) para navegar entre componentes.      │
@@ -16,7 +16,7 @@ import TaskManager         from './components/TaskManager'
 // │  4  TaskManager       — estado con array: filter, map, spread       │
 // │  5  Carrito useState  — array de objetos + lógica en App.tsx        │
 // └──────────────────────────────────────────────────────────────────────┘
-const PASO = 2
+const PASO = 1
 
 interface CartItem { id: number; name: string; price: number }
 
@@ -44,23 +44,23 @@ export default function App() {
     PASO === 2 ? <SafeCounter /> :
     PASO === 3 ? <UserProfileForm /> :
     PASO === 4 ? <TaskManager /> :
-    // PASO === 5 ? (
-    //   <>
-    //     <h1 style={{ fontSize: 22 }}>Tienda</h1>
-    //     <section>
-    //       {catalog.map((p) => (
-    //         <CatalogProductItem
-    //           key={p.id}
-    //           id={p.id}
-    //           name={p.name}
-    //           price={p.price}
-    //           onAddToCart={handleAddToCart}
-    //         />
-    //       ))}
-    //     </section>
-    //     <ShoppingCartSummary items={cartItems} onClearCart={handleClearCart} />
-    //   </>
-    // ) :
+    PASO === 5 ? (
+      <>
+        <h1 style={{ fontSize: 22 }}>Tienda</h1>
+        <section>
+          {catalog.map((p) => (
+            <CatalogProductItem
+              key={p.id}
+              id={p.id}
+              name={p.name}
+              price={p.price}
+              onAddToCart={handleAddToCart}
+            />
+          ))}
+        </section>
+        <ShoppingCartSummary items={cartItems} onClearCart={handleClearCart} />
+      </>
+    ) :
     <p style={{ color: '#e00' }}>Paso {PASO}: crea el componente primero</p>
 
   return (
