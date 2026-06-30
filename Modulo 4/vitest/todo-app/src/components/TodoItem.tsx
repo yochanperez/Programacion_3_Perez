@@ -17,10 +17,16 @@ export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
         onChange={() => onToggle(todo.id)}
         aria-label={`Marcar "${todo.text}"`}
       />
-      <input type="text" value={todo.titulo}>
-      </input>
+      
+      {/* CORREGIDO: Usamos una etiqueta de texto para el título. 
+          Esto elimina el warning del onChange y permite que .toHaveTextContent() lo encuentre. */}
+      <strong style={{ marginRight: '8px' }}>{todo.titulo}</strong>
+
       {/* El texto de la tarea */}
-      <span>{todo.text}</span>
+      <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+        {todo.text}
+      </span>
+
       {/* Botón para eliminar la tarea */}
       <button onClick={() => onDelete(todo.id)}>Eliminar</button>
     </li>
