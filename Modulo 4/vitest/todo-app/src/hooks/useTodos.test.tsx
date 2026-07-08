@@ -59,5 +59,6 @@ describe('useTodos', () => {
 
     expect(result.current.todos).toHaveLength(2)
     expect(result.current.todos[0].id).toBe('b')
+    expect(result.current.todos[1].id).toBe('c')
   })
 })
