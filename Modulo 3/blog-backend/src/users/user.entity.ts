@@ -11,12 +11,18 @@ export class User {
   @Column({ unique: true })
   email!: string;
 
-  @Column()
-  password!: string;
+  @Column({ type: 'varchar', nullable: true })
+  password?: string | null;
 
   @Column({ default: true })
   isActive!: boolean;
 
   @Column({ nullable: true })
   profile!: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleId?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  avatarUrl?: string | null;
 }

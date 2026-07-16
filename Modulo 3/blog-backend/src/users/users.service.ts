@@ -1,16 +1,11 @@
-import * as bcrypt from 'bcrypt';
-import {
-  Injectable,
-  NotFoundException,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { paginate, Pagination } from 'nestjs-typeorm-paginate';
-
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import * as bcrypt from 'bcrypt';
+import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
 import { QueryDto } from 'src/common/dto/query.dto';
 
 @Injectable()
@@ -18,20 +13,15 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) {}
+  ) { }
 
-  // =========================
-  // CREATE
-  // =========================
   async create(createUserDto: CreateUserDto): Promise<User | null> {
     try {
-      const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-
+      const hashedPassword = await bcrypt.hash(createUserDto!.password!, 10);
       const user = this.userRepository.create({
         ...createUserDto,
         password: hashedPassword,
       });
-
       return await this.userRepository.save(user);
     } catch (err) {
       console.error('Error creating user:', err);
@@ -39,16 +29,12 @@ export class UsersService {
     }
   }
 
-  // =========================
-  // FIND ALL
-  // =========================
   async findAll(
     queryDto: QueryDto,
     isActive?: boolean,
-  ): Promise<Pagination<User>> {
+  ): Promise<Pagination<User> | null> {
     try {
       const { page, limit, search, searchField, sort, order } = queryDto;
-
       const query = this.userRepository.createQueryBuilder('user');
 
       if (isActive !== undefined) {
@@ -59,17 +45,11 @@ export class UsersService {
         if (searchField) {
           switch (searchField) {
             case 'username':
-              query.andWhere('user.username ILIKE :search', {
-                search: `%${search}%`,
-              });
+              query.andWhere('user.username ILIKE :search', { search: `%${search}%` });
               break;
-
             case 'email':
-              query.andWhere('user.email ILIKE :search', {
-                search: `%${search}%`,
-              });
+              query.andWhere('user.email ILIKE :search', { search: `%${search}%` });
               break;
-
             default:
               query.andWhere(
                 '(user.username ILIKE :search OR user.email ILIKE :search)',
@@ -91,15 +71,10 @@ export class UsersService {
       return await paginate<User>(query, { page, limit });
     } catch (err) {
       console.error('Error retrieving users:', err);
-      throw new InternalServerErrorException(
-        'Error al obtener los usuarios',
-      );
+      return null;
     }
   }
 
-  // =========================
-  // FIND ONE
-  // =========================
   async findOne(id: string): Promise<User | null> {
     try {
       return await this.userRepository.findOne({ where: { id } });
@@ -109,107 +84,74 @@ export class UsersService {
     }
   }
 
-  // =========================
-  // FIND BY EMAIL
-  // =========================
-  async findByEmail(email: string): Promise<User | null> {
-    try {
-      return await this.userRepository.findOne({ where: { email } });
-    } catch (err) {
-      console.error('Error fetching user by email:', err);
-      return null;
-    }
+  async findByEmail(email: string) {
+    return this.userRepository.findOne({ where: { email } });
   }
 
-  // =========================
-  // FIND BY USERNAME (FIX FALTANTE)
-  // =========================
-  async findByUsername(username: string): Promise<User | null> {
-    try {
-      return await this.userRepository.findOne({ where: { username } });
-    } catch (err) {
-      console.error('Error fetching user by username:', err);
-      return null;
-    }
+  async findByUsername(username: string) {
+    return this.userRepository.findOne({ where: { username } });
   }
 
-  // =========================
-  // UPDATE
-  // =========================
-  async update(
-    id: string,
-    updateUserDto: UpdateUserDto,
-  ): Promise<User | null> {
-    try {
-      const user = await this.userRepository.findOne({ where: { id } });
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) return null;
 
-      if (!user) {
-        return null;
-      }
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
+    }
 
-      if (updateUserDto.password) {
-        updateUserDto.password = await bcrypt.hash(
-          updateUserDto.password,
-          10,
-        );
-      }
+    Object.assign(user, updateUserDto);
+    return this.userRepository.save(user);
+  }
 
-      const merged = { ...user, ...updateUserDto };
+  async remove(id: string) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) return null;
+    return this.userRepository.remove(user);
+  }
 
-      return await this.userRepository.save(merged);
-    } catch (err) {
-      console.error('Error updating user:', err);
-      throw new InternalServerErrorException(
-        'Error al actualizar el usuario',
+  async updateProfile(id: string, profile: string) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    if (!user) throw new NotFoundException('User not found');
+    user.profile = profile;
+    return this.userRepository.save(user);
+  }
+
+  // --- Métodos de integración con Google ---
+
+  async findByGoogleId(googleId: string) {
+    return this.userRepository.findOne({ where: { googleId } });
+  }
+
+  async createFromGoogle(data: { username: string; email: string; googleId: string; avatarUrl?: string }) {
+    const user = this.userRepository.create({ ...data, isActive: true });
+    return this.userRepository.save(user);
+  }
+
+  async linkGoogleId(id: string, googleId: string, avatarUrl?: string) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) throw new NotFoundException('User not found');
+
+    const existing = await this.findByGoogleId(googleId);
+    if (existing && existing.id !== id) {
+      throw new BadRequestException('Esta cuenta de Google ya está vinculada a otro usuario');
+    }
+
+    user.googleId = googleId;
+    if (avatarUrl) user.avatarUrl = avatarUrl;
+    return this.userRepository.save(user);
+  }
+
+  async unlinkGoogleId(id: string) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) throw new NotFoundException('User not found');
+    if (!user.password) {
+      throw new BadRequestException(
+        'No puedes desvincular Google sin antes definir una contraseña para tu cuenta',
       );
     }
-  }
-
-  // =========================
-  // REMOVE
-  // =========================
-  async remove(id: string): Promise<User | null> {
-    try {
-      const user = await this.userRepository.findOne({ where: { id } });
-
-      if (!user) {
-        return null;
-      }
-
-      await this.userRepository.remove(user);
-
-      return user;
-    } catch (err) {
-      console.error('Error removing user:', err);
-      throw new InternalServerErrorException(
-        'Error al eliminar el usuario',
-      );
-    }
-  }
-
-  // =========================
-  // UPDATE PROFILE
-  // =========================
-  async updateProfile(id: string, filename: string): Promise<User> {
-    try {
-      const user = await this.userRepository.findOne({ where: { id } });
-
-      if (!user) {
-        throw new NotFoundException('User not found');
-      }
-
-      user.profile = filename;
-
-      return await this.userRepository.save(user);
-    } catch (err) {
-      if (err instanceof NotFoundException) {
-        throw err;
-      }
-
-      console.error('Error updating profile:', err);
-      throw new InternalServerErrorException(
-        'Error al actualizar el perfil',
-      );
-    }
+    user.googleId = null;
+    user.avatarUrl = null;
+    return this.userRepository.save(user);
   }
 }
