@@ -1,5 +1,6 @@
 // src/types/user.types.ts
 export interface User {
+  googleId: any
   id: string
   username: string
   email: string

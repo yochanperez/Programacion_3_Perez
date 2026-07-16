@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useAuthStore } from '@/store/auth.store'
 import { getUser, updateUser, uploadProfileImage } from '@/api/users.api'
-import { profileImageUrl } from '@/lib/urls'
+import { profileImageUrl, googleAuthUrl, avatarSrc } from '@/lib/urls'
 import { avatarColor } from '@/lib/avatar-color'
 import { cn } from '@/lib/utils'
 import type { User } from '@/types/user.types'
@@ -13,6 +13,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useToastStore } from '@/store/toast.store' // Asegúrate de que esta ruta sea la correcta para tu toast store
+import { unlinkGoogle } from '@/api/auth.api'
 
 const schema = z.object({
   username: z.string().min(3, 'Mínimo 3 caracteres'),
@@ -22,14 +24,24 @@ type FormValues = z.infer<typeof schema>
 
 export default function ProfilePage() {
   const userId = useAuthStore((s) => s.userId)
+  const token = useAuthStore((s) => s.token)
+  
   const [user, setUser] = useState<User | null>(null)
+  const [unlinking, setUnlinking] = useState(false)
+  
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const showToast = useToastStore((s) => s.show)
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } =
     useForm<FormValues>({ resolver: zodResolver(schema) })
 
   useEffect(() => {
-    if (userId) getUser(userId).then((u) => { setUser(u); reset({ username: u.username, email: u.email }) })
+    if (userId) {
+      getUser(userId).then((u) => { 
+        setUser(u)
+        reset({ username: u.username, email: u.email }) 
+      })
+    }
   }, [userId, reset])
 
   const onSubmit = async (values: FormValues) => {
@@ -45,14 +57,31 @@ export default function ProfilePage() {
     setUser(updated)
   }
 
+  const handleUnlinkGoogle = async () => {
+    setUnlinking(true)
+    try {
+      const updated = await unlinkGoogle()
+      setUser(updated)
+      showToast('Cuenta de Google desvinculada', 'success')
+    } catch (err: any) {
+      // Maneja errores de backend en caso de que no tenga contraseña definida para desvincular
+      const errorMessage = err?.response?.data?.message || 'Error al desvincular la cuenta'
+      showToast(errorMessage, 'error')
+    } finally {
+      setUnlinking(false)
+    }
+  }
+
   if (!user) return <div className="p-8 text-muted-foreground">Cargando...</div>
 
   return (
     <div className="mx-auto max-w-sm space-y-6 p-8">
       <h1 className="text-xl font-semibold">Mi perfil</h1>
+      
       <div className="flex flex-col items-center gap-3">
         <Avatar className="h-24 w-24">
           <AvatarImage src={profileImageUrl(user.profile)} />
+          <AvatarImage src={avatarSrc(user)} />
           <AvatarFallback className={cn(avatarColor(user.username), 'text-2xl text-white')}>
             {user.username.slice(0, 2).toUpperCase()}
           </AvatarFallback>
@@ -62,6 +91,7 @@ export default function ProfilePage() {
           Cambiar foto
         </Button>
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <div>
           <Label htmlFor="username">Usuario</Label>
@@ -77,6 +107,25 @@ export default function ProfilePage() {
           {isSubmitting ? 'Guardando...' : 'Guardar cambios'}
         </Button>
       </form>
+
+      {/* Sección de integración con Google */}
+      <div className="space-y-2 rounded-md border p-4">
+        <h2 className="text-sm font-semibold">Cuenta de Google</h2>
+        {user.googleId ? (
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">Vinculada</span>
+            <Button variant="outline" size="sm" disabled={unlinking} onClick={handleUnlinkGoogle}>
+              {unlinking ? 'Desvinculando...' : 'Desvincular'}
+            </Button>
+          </div>
+        ) : (
+          <a href={googleAuthUrl(token ?? undefined)}>
+            <Button variant="outline" size="sm" className="w-full">
+              Vincular con Google
+            </Button>
+          </a>
+        )}
+      </div>
     </div>
   )
 }

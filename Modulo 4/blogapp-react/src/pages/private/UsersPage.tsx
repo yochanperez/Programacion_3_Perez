@@ -5,11 +5,15 @@ import type { User } from '@/types/user.types'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import UserFormDialog from '@/components/private/UserFormDialog'
+import ConfirmDialog from '@/components/ConfirmDialog'
+import { useToastStore } from '@/store/toast.store'
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
   const [editing, setEditing] = useState<User | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const showToast = useToastStore((s) => s.show)
+  const [deleteTarget, setDeleteTarget] = useState<User | null>(null)
 
   const load = async () => {
     const result = await getUsers({ limit: 50 })
@@ -18,10 +22,14 @@ export default function UsersPage() {
 
   useEffect(() => { load() }, [])
 
-  const handleDelete = async (id: string) => {
-    await deleteUser(id)
-    load()
-  }
+  const handleDelete = async (id?: string) => {
+      const targetId = id ?? deleteTarget?.id
+      if (!targetId) return
+      await deleteUser(targetId)
+      showToast('Usuario eliminado', 'success')
+      setDeleteTarget(null)
+      load()
+    }
 
   return (
     <div className="mx-auto max-w-2xl space-y-4 p-8">
@@ -55,6 +63,13 @@ export default function UsersPage() {
         onOpenChange={setDialogOpen}
         user={editing}
         onSaved={load}
+      />
+      <ConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => !open && setDeleteTarget(null)}
+        title="Eliminar usuario"
+        description={`¿Seguro que quieres eliminar "${deleteTarget?.username}"? Esta acción no se puede deshacer.`}
+        onConfirm={handleDelete}
       />
     </div>
   )
