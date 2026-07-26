@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>3er Semestre</title>
+    <style>
+        h2 {
+            color: blueviolet;
+            font-size: 3rem;
+        }
+    </style>
+    <link rel="stylesheet" href="04_display.css">
+    <link rel="stylesheet" href="04_reset.css">
+</head>
+<body>
+    <h1 style="color: #e63946">Display</h1>
+    <div class="banner-oferta">🔥 Oferta especial: 20% en laptops</div><br>
+
+    <div class="etiqueta-nuevo">Nuevo Producto</div><br>
+
+    <button class="btn-carrito">Ir al carrito</button><br>
+
+    <button onclick="toggleMenu()">Menu</button>
+    <div id="menu" class="menu-movil">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Servicio</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </div>
+    <script>
+        function toggleMenu(){
+            const menu = document.getElementById('menu')
+            menu.classList.toggle('activo')
+        }
+    </script>
+    <div class="menu-movil.activo">Nuevo Producto</div>
+    
+</body>
+</html>

@@ -1,0 +1,41 @@
+.stats-card {
+  width: 280px;
+  padding: 20px;
+  border: 1px solid #10b981;
+  border-radius: 8px;
+  margin: 16px;
+  background-color: #064e3b;
+  color: #fff;
+}
+
+.scouting-card {
+  width: 280px;
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  margin: 16px;
+  background-color: #1e3a8a;
+  color: #fff;
+  padding: 10px 20px 15px;
+}
+
+.player-card-legacy {
+  width: 280px;
+  padding: 20px;
+  border: 5px solid #f59e0b;
+  background-color: #1e293b;
+  color: #fff;
+  margin: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.player-card-modern {
+  width: 280px;
+  padding: 20px;
+  border: 5px solid #ef4444;
+  background-color: #1e293b;
+  color: #fff;
+  margin: 16px;
+}

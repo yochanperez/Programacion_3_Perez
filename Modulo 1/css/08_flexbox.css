@@ -1,0 +1,33 @@
+.productos-grid {
+  display: flex; /* activa Flexbox */
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: row;            /* → izquierda a derecha (defecto) */
+  flex-direction: row-reverse;    /* ← derecha a izquierda */
+  flex-direction: column;         /* ↓ arriba a abajo */
+  flex-direction: column-reverse; /* ↑ abajo a arriba */
+}
+
+/* Navbar: items en fila */
+.navbar {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Tarjeta: imagen, nombre, precio y botón en columna */
+.producto-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-justify {
+  display: flex;
+  justify-content: flex-start;    /* agrupados al inicio (defecto) */
+  justify-content: flex-end;      /* agrupados al final */
+  justify-content: center;        /* centrados */
+  justify-content: space-between; /* espacio entre items, sin márgenes externos */
+  justify-content: space-around;  /* espacio alrededor de cada item */
+  justify-content: space-evenly;  /* espacio igual entre todos */
+}

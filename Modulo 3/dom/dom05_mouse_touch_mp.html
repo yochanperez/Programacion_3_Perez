@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos Mouse y Touch - Tablero Táctico</title>
+    <script src="dom05_mouse_touch_mp.js" defer></script>
+</head>
+<body>
+    <h1 id="titulo">Tablero Táctico: Eventos Mouse y Touch</h1>
+    <h2>Análisis de Movimiento e Interacciones Táctiles</h2>
+
+    <h3>1. Inspección de Área Técnica (Mouse)</h3>
+    <div id="caja" style="width: 200px; background-color: #e0f2fe; height: 200px; border: 2px dashed #0284c7; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: bold; padding: 10px;">
+        Pasa el cursor por aquí para analizar el área
+    </div>
+
+    <h3>2. Zona de Interacción Táctil (Touch)</h3>
+    <div id="areaTouch" style="width: 200px; background-color: #fecdd3; height: 200px; border: 2px solid #e11d48; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; color: #881337; font-weight: bold; padding: 10px;">
+        Toca aquí (Pantalla Táctil)
+    </div>
+
+    <h3>3. Desplazamiento del Balón</h3>
+    <div id="container" style="position:relative; width:100%; height:300px; background:#166534; border-radius: 10px; margin-top:20px; overflow:hidden;">
+        <p style="color: white; padding: 10px; margin: 0;">Haz clic en cualquier punto de la cancha para mover el balón:</p>
+        <div id="circulo" style="width:60px; height:60px; background:white; border: 4px solid #000; border-radius:50%; position:absolute; top:100px; left:100px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.5);"></div>
+    </div>
+
+    <h3>4. Acción de Disparo a Puerta</h3>
+    <div style="margin-top:20px;">
+        <button id="botonAnimado" style="padding:12px 24px; font-size:18px; background-color: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-weight: bold;">
+            ¡Tócame o pasa el mouse para Rematar!
+        </button>
+    </div>
+
+    <h3>5. Vector de Presión Defensiva</h3>
+    <div id="contenedorTriangulo" style="position:relative; width:100%; height:250px; margin-top:20px; background:#1e293b; border-radius: 10px; overflow: hidden;">
+        <p style="color: white; padding: 10px; margin: 0;">Mueve el mouse aquí para cambiar la orientación del ataque:</p>
+        <div id="triangulo" style="
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 80px solid #f59e0b;
+            position: absolute;
+            top: 80px;
+            left: calc(50% - 40px);
+            transition: transform 0.2s ease;">
+        </div>
+    </div>
+</body>
+</html>

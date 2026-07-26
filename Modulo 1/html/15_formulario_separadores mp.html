@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Estadísticas de Fútbol</title>
+</head>
+<body>
+
+    <h1>Registro de Estadísticas del Partido</h1>
+    <form action="/procesar-estadisticas" method="post">
+        
+        <fieldset>
+            <legend>
+                Información del Jugador
+            </legend>
+            <label for="jugador">Nombre del Jugador:</label>
+            <input type="text" id="jugador" name="jugador" placeholder="Ej. L. Messi">
+            <br><br>
+            <label for="posicion">Posición:</label>
+            <select id="posicion" name="posicion">
+                <option value="portero">Portero</option>
+                <option value="defensa">Defensa</option>
+                <option value="mediocentro">Mediocentro</option>
+                <option value="delantero">Delantero</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Rendimiento en el Campo</legend>
+            <label for="goles">Goles Marcados:</label>
+            <input type="number" id="goles" name="goles" min="0" value="0">
+            <br><br>
+            <label for="asistencias">Asistencias:</label>
+            <input type="number" id="asistencias" name="asistencias" min="0" value="0">
+            <br><br>
+            <label for="minutos">Minutos Jugados:</label>
+            <input type="number" id="minutos" name="minutos" min="0" max="120">
+        </fieldset>
+
+        <br>
+        <button type="submit">Guardar Estadísticas</button>
+    </form>
+</body>
+</html>

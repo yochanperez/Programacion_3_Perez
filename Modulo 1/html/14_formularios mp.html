@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+
+    <form action="/procesar" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label form="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Correo electronico</label>
+                    <input type="email" id="email" name="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label form="telefono">Telefono</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label form="url">Sitio Web</label>
+                    <input type="url" nmae="url" id="url">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label form="buscar">Buscar</label>
+                    <input type="search" id="buscar" name="buscar">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label form="password">Contraseña</label>
+                    <input type="password" id="password" name="password">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label form="edad">Edad</label>
+                    <input type="number" id="edad" name="edad" min="0" max="120" step="1">
+                </td>
+            </tr>
+
+            <hr>
+
+            
+
+
+        </table>
+
+    </form>
+</body>
+</html>

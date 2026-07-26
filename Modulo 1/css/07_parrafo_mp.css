@@ -1,0 +1,140 @@
+:root {
+  --color-primario: #077d92c7;
+  --color-secundario: #111827;
+  --color-acento: #457b9d;
+  --color-fondo: #0b0f19;
+  --color-texto: #e5e7eb;
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: 'Inter', sans-serif;
+  padding: 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1.5rem;
+}
+
+.parrafo {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.titulo-producto {
+  line-height: 1.2;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.descripcion-larga {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: #9ca3af;
+}
+
+.logo-tienda {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.etiqueta-categoria {
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  color: #38c7eb;
+  margin-bottom: 1rem;
+}
+
+.banner-oferta { 
+  text-align: center; 
+  background-color: rgba(230, 57, 70, 0.1);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.descripcion { 
+  text-align: left; 
+  margin-bottom: 1rem;
+}
+
+.precio-total { 
+  text-align: right; 
+  color: #10b981;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.texto-justificado { 
+  text-align: justify; 
+  margin-bottom: 1rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #374151;
+  margin: 2rem 0;
+}
+
+.none-text-decoration {
+  text-decoration: none;
+  color: #38c7eb;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.precio-antes {
+  text-decoration: line-through;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.link-destacado {
+  text-decoration: underline;
+  text-decoration-color: #e63946;
+  text-underline-offset: 4px;
+  color: #ffffff;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.subtitulo { 
+  text-transform: capitalize; 
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  color: #ffffff;
+}
+
+.codigo-producto { 
+  text-transform: lowercase; 
+  font-size: 1.1rem;
+  font-family: monospace;
+  color: #9ca3af;
+}
+
+.producto-nombre {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  background-color: #1f2937;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  font-family: monospace;
+}
+
+.alerta { color: #ef4444; }
+.exito  { color: #10b981; }
+.info   { color: #3b82f6; }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutData - Modos de Visualización</title>
+    <style>
+        h2 {
+            color: blueviolet;
+            font-size: 3rem;
+        }
+    </style>
+    <link rel="stylesheet" href="04_display_mp.css">
+</head>
+<body style="background-color: #0b0f19; font-family: 'Segoe UI', sans-serif; padding: 2rem;">
+
+    <h1 style="color: #e63946; text-transform: uppercase; margin-bottom: 1.5rem;">🖥️ Configuración de Pantalla y Elementos</h1>
+    
+    <div class="banner-oferta">🔥 ALERTA EN VIVO: Gol de F.C. Local (74')</div><br>
+
+    <div class="etiqueta-nuevo">Fichaje Reciente</div><br>
+
+    <button class="btn-carrito">Ver Estadísticas Avanzadas</button><br>
+
+    <button onclick="toggleMenu()" style="padding: 10px; cursor: pointer; margin-top: 1rem;">Opciones de Filtrado</button>
+    
+    <div id="menu" class="menu-movil">
+        <ul>
+            <li><a href="#">Métricas de Ataque</a></li>
+            <li><a href="#">Métricas de Defensa</a></li>
+            <li><a href="#">Mapas de Calor</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleMenu(){
+            const menu = document.getElementById('menu')
+            menu.classList.toggle('activo')
+        }
+    </script>
+
+    <div class="menu-movil activo" style="margin-top: 1rem;">Vista Alternativa del Panel Activada</div>
+    
+</body>
+</html>
