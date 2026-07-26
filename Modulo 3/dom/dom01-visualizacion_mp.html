@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas de Fútbol - Dashboard</title>
+    <script src="dom01-visualizacion_mp.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Panel de Estadísticas del Partido</h1>
+        <p>Análisis en tiempo real de rendimiento, métricas clave y rendimiento individual de los jugadores.</p>
+    </header>
+
+    <main>
+        <section id="resumen-partido">
+            <h2>Métricas del Equipo</h2>
+            <div id="stats-generales">
+                <p><strong>Posesión:</strong> <span id="posesion">0%</span></p>
+                <p><strong>Tiros a Puerta:</strong> <span id="tiros">0</span></p>
+                <p><strong>Goles Esperados (xG):</strong> <span id="xg">0.0</span></p>
+            </div>
+        </section>
+
+        <section id="rendimiento-jugadores">
+            <h2>Rendimiento Individual</h2>
+            <table border="1" id="tabla-jugadores">
+                <thead>
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Posición</th>
+                        <th>Pases Completados</th>
+                        <th>Recuperaciones</th>
+                        <th>Calificación</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-jugadores">
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

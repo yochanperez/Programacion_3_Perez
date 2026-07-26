@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificación del DOM - Marcador Deportivo</title>
+    <script src="dom03-modificar_mp.js" defer></script>
+    <style>
+        .boton {
+            background-color: #0284c7; 
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .gol-animacion {
+            color: #16a34a !important; 
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo-partido">Panel de Control: Partido en Vivo</h1>
+    <h2 id="estado-marcador">Liga de Quito 0 - 0 Independiente del Valle</h2>
+    
+    <p>
+        <a id="link-ficha" href="https://www.feffutbol.org" target="_blank">Ver Ficha Oficial del Partido</a>
+    </p>
+
+    <button id="btn-gol" class="boton">¡Anotar Gol!</button>
+</body>
+</html>

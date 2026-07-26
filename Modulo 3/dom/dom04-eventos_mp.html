@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos del DOM - Registro del Partido</title>
+    <script src="dom04-eventos_mp.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .boton {
+            background-color: #0284c7; 
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .boton:hover {
+            background-color: #0369a1;
+        }
+        input {
+            padding: 0.5em;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 280px;
+            display: block;
+        }
+        ul {
+            background: #f8fafc;
+            padding: 15px 30px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo">Control de Eventos en Vivo</h1>
+    
+    <h2 onclick="alert('Sistema de estadísticas activo')">⚡ Eventos inline (Haz clic aquí)</h2>
+    
+    <button class="boton" id="btn" onclick="mostrarAlerta()">Mostrar Alerta Táctica</button>
+
+    <br><br>
+
+    <button class="boton" id="btn2" onclick="agregarProducto()">Registrar Incidencia (Inline)</button>
+    <ul id="lista-productos1"></ul>
+    
+    <button class="boton" id="btn3">Registrar Incidencia (desde Listener)</button>
+
+    <br><br>
+
+    <button class="boton" id="btn4" onclick="reemplazarParrafo()">Actualizar Reporte Táctico</button>
+    <p id="parrafo">Rendimiento inicial: Presión alta en bloque medio.</p>
+
+    <br>
+
+    <label for="campo">Buscar Jugador:</label>
+    <input id="campo" type="text" placeholder="Escribe el nombre del jugador...">
+
+    <label for="campo_actualizar_parrafo">Anotación del Analista en tiempo real:</label>
+    <input id="campo_actualizar_parrafo" type="text" placeholder="Escribe observaciones del partido...">
+    <p id="parrafo2">Esperando notas del analista...</p>
+
+</body>
+</html>
