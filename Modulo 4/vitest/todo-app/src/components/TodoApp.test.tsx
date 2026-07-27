@@ -3,7 +3,8 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { Todo } from '../types'
 import { fetchTodos } from '../api/todos'
-import TodoApp from '../App';
+import TodoApp from './TodoApp' // Importamos el componente desde la misma carpeta
+
 // vi.mock se "iza" (hoisting) al inicio del archivo: reemplaza el módulo entero.
 vi.mock('../api/todos', () => ({
   fetchTodos: vi.fn(), // creamos un mock vacío que controlaremos por test
@@ -19,7 +20,10 @@ describe('TodoApp con API mockeada', () => {
 
   it('muestra las tareas que devuelve la API', async () => {
     // Arrange: respuesta controlada para este test.
-    const datos: Todo[] = [{ id: '1', text: 'Tarea remota', completed: false }]
+    const datos: Todo[] = [{
+      id: '1', text: 'Tarea remota', completed: false,
+      titulo: ''
+    }]
     fetchTodosMock.mockResolvedValue(datos)
 
     render(<TodoApp />)

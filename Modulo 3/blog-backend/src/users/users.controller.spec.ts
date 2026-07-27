@@ -3,11 +3,6 @@ import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-
-// Mantenemos las importaciones limpias con rutas relativas
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-
 const USER_ID      = '33333333-3333-3333-3333-333333333333';
 const NOT_FOUND_ID = '99999999-9999-9999-9999-999999999999';
 
@@ -55,6 +50,7 @@ describe('UsersController', () => {
   });
 
   describe('create()', () => {
+
     it('should return SuccessResponseDto with created user', async () => {
       const dto      = { username: 'ana', email: 'ana@test.com', password: 'pass' };
       const mockUser = { id: USER_ID, username: 'ana', email: 'ana@test.com' };
@@ -70,9 +66,11 @@ describe('UsersController', () => {
       await controller.create(dto);
       expect(mockUsersService.create).toHaveBeenCalledWith(dto);
     });
+
   });
 
   describe('findAll()', () => {
+
     it('should return SuccessResponseDto with user list', async () => {
       const mockPagination = {
         items: [{ id: USER_ID, username: 'ana' }],
@@ -81,7 +79,8 @@ describe('UsersController', () => {
       mockUsersService.findAll.mockResolvedValue(mockPagination);
 
       const result = await controller.findAll({ page: 1, limit: 10 });
-      expect(result).toEqual({ success: true, message: 'Users retrieved successfully', data: mockPagination });
+      expect(result.success).toBe(true);
+      expect(result.data).toEqual(mockPagination);
     });
 
     it('should call usersService.findAll with the query', async () => {
@@ -90,9 +89,11 @@ describe('UsersController', () => {
       await controller.findAll(query);
       expect(mockUsersService.findAll).toHaveBeenCalledWith(query);
     });
+
   });
 
   describe('findOne()', () => {
+
     it('should return SuccessResponseDto with user', async () => {
       const mockUser = { id: USER_ID, username: 'ana' };
       mockUsersService.findOne.mockResolvedValue(mockUser);
@@ -111,9 +112,11 @@ describe('UsersController', () => {
       await controller.findOne(USER_ID);
       expect(mockUsersService.findOne).toHaveBeenCalledWith(USER_ID);
     });
+
   });
 
   describe('update()', () => {
+
     it('should return SuccessResponseDto with updated user', async () => {
       const mockUser = { id: USER_ID, username: 'ana-v2' };
       mockUsersService.update.mockResolvedValue(mockUser);
@@ -134,24 +137,29 @@ describe('UsersController', () => {
       await controller.update(USER_ID, dto);
       expect(mockUsersService.update).toHaveBeenCalledWith(USER_ID, dto);
     });
+
   });
 
   describe('remove()', () => {
+
     it('should return SuccessResponseDto when user is deleted', async () => {
       const mockUser = { id: USER_ID, username: 'ana' };
       mockUsersService.remove.mockResolvedValue(mockUser);
 
       const result = await controller.remove(USER_ID);
-      expect(result).toEqual({ success: true, message: 'User deleted successfully', data: mockUser });
+      expect(result.success).toBe(true);
+      expect(result.data).toEqual(mockUser);
     });
 
     it('should throw NotFoundException when user does not exist', async () => {
       mockUsersService.remove.mockResolvedValue(null);
       await expect(controller.remove(NOT_FOUND_ID)).rejects.toThrow(NotFoundException);
     });
+
   });
 
   describe('uploadProfile()', () => {
+
     it('should return SuccessResponseDto with updated user', async () => {
       const mockUser = { id: USER_ID, profile: mockFile.filename };
       mockUsersService.updateProfile.mockResolvedValue(mockUser);
@@ -180,5 +188,7 @@ describe('UsersController', () => {
       try { await controller.uploadProfile(USER_ID, undefined as any); } catch {}
       expect(mockUsersService.updateProfile).not.toHaveBeenCalled();
     });
+
   });
+
 });

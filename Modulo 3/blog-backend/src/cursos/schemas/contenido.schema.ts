@@ -3,13 +3,13 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Contenido extends Document {
-  @Prop({ required: false })
+  @Prop({ required: true })
   titulo?: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   duracion?: number;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   descripcion?: string;
 
   @Prop({ required: true })
@@ -18,19 +18,19 @@ export class Contenido extends Document {
   @Prop({ required: true })
   enlace?: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   dificultad?: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   fecha_publicacion?: Date;
 
-  @Prop({ required: false, default: false })
+  @Prop({ required: true, default: false })
   completado?: boolean;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   tiempo_estimado?: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   video_id?: string;
 }
 

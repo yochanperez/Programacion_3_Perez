@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException, BadRequestException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { LoginDto } from './dto/login.dto';
@@ -11,30 +11,45 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
-  async login(loginDto: LoginDto) {
-    const user = await this.usersService.findByEmail(loginDto.email);
-    if (!user || !(await bcrypt.compare(loginDto.password, user.password!))) {
-      throw new UnauthorizedException('Credenciales inválidas');
+  async login(loginDto: LoginDto): Promise<string | null> {
+    try {
+      let user: User | null = null;
+      if (loginDto.username) {
+        user = await this.usersService.findByUsername(loginDto.username);
+      }
+      if (!user && loginDto.email) {
+        user = await this.usersService.findByEmail(loginDto.email);
+      }
+      if (!user) return null;
+
+      const isValid = await bcrypt.compare(loginDto!.password!, user.password!);
+      if (!isValid) return null;
+
+      const payload = { id: user.id, username: user.username };
+      return this.jwtService.sign(payload);
+    } catch (err) {
+      console.error('Unexpected login error:', err);
+      return null;
     }
-    const payload = { id: user.id, email: user.email };
-    return { access_token: this.jwtService.sign(payload) };
   }
 
-  async register(createUserDto: CreateUserDto) {
-    const user = await this.usersService.create(createUserDto);
+  async register(createUserDto: CreateUserDto): Promise<string | null> {
+    try {
+      const user = await this.usersService.create(createUserDto);
+      if (!user) return null;
 
-    if (!user) {
-      throw new BadRequestException('No se pudo crear el usuario.');
+      const payload = { id: user.id, email: user.username };
+      return this.jwtService.sign(payload);
+    } catch (err) {
+      console.error('Register error:', err);
+      return null;
     }
-
-    const payload = { id: user.id, email: user.username };
-    return { access_token: this.jwtService.sign(payload) };
   }
 
   async loginWithUser(user: User): Promise<string> {
-  const payload = { id: user.id, username: user.username };
-  return this.jwtService.sign(payload);
-}
+    const payload = { id: user.id, username: user.username };
+    return this.jwtService.sign(payload);
+  }
 }

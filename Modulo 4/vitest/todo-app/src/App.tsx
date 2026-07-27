@@ -1,9 +1,6 @@
 // src/App.tsx
+import TodoApp from './components/TodoApp';
+
 export default function App() {
-  return (
-    <main>
-      <h1>Todo App</h1>
-      {/* Iremos montando aquí TodoApp, LoginForm, etc. en los próximos módulos */}
-    </main>
-  );
+  return <TodoApp />;
 }
